@@ -188,9 +188,9 @@
       };
       result = result + weights();
       you.innerHTML = "YOUR SEMENTER SCORE "
-      testScore.innerHTML = result;
+      testScore.innerHTML = result.toFixed(1);
       switch (true) {
-        case result >= 75:
+        case result > 75:
           testScore.style.backgroundColor = "rgb(160, 250, 214)";
           break;
         case result >= 70 && result <= 74:
