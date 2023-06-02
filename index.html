@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>iss score</title>
+</head>
+
+<body style="display: flex; justify-content: center; align-items: center; padding: 0; margin: 0; font-family: Arial, Helvetica, sans-serif; overflow: hidden;">
+  <div class="container" style="width: 100%; height: 100vh; display: flex; flex-direction: column; align-items: center;">
+    <div class="score" style="font-size: larger; font-weight: bolder; text-align: center; margin: 100px; width: 100%;">
+      <span style="color: rgb(101, 101, 101);" class="you">YOU SCORED </span>
+      <span class="testScore" style="background-color: rgb(246, 246, 246); padding: 5px 10px; border-radius: 14px;"> __</span>
+    </div>
+
+    <!--Test-->
+    <form action="/test" class="testCard" style="background-color: rgb(248, 248, 248); max-width: 500px; padding: 20px; margin: 10px; border-radius: 20px; display: none;">
+      <h1 style="font-size: large; text-align: center; margin-bottom: 40px;">Your Test Scores</h1>
+
+      <!--Test inputs-->
+      <div style="display: flex; gap: 10px; margin-bottom: 40px; width: 300px;">
+
+        <!--Test 1 input-->
+        <div class=" test1" style="flex: 1;">
+          <p style="font-size: small; margin: 2px;">Test 1 Score</p>
+          <input type="text" style="border: none; outline: none; padding: 10px; width: calc(100% - 20px);" id="testOneInput">
+        </div>
+
+        <!--Test 2 input-->
+        <div style="flex: 1;">
+          <p style="font-size: small; margin: 2px;">Test 2 Score</p>
+          <input type="text" style="border: none; outline: none; padding: 10px; width: calc(100% - 20px);" id="testTwoInput">
+        </div>
+      </div>
+      <button style="width: 100%; height: 40px; outline: none; border: none; border-radius: 10px; margin-bottom: 5px; background-color: rgba(41, 41, 41, 0.876); color: rgb(255, 255, 255);">Next</button>
+    </form>
+
+    <!--Quizzes-->
+    <form action="/quizzes" class="quezzes" style="background-color: rgb(248, 248, 248); max-width: 500px; padding: 20px; margin: 10px; border-radius: 20px; display: none;">
+      <h1 style=" font-size: large; text-align: center; margin-bottom: 40px">Your Quiz Scores</h1>
+
+      <!--Quiz inputs-->
+      <div style="display: flex; gap: 10px; width: 300px; flex-direction: column; gap: 20px; margin-bottom: 40px;">
+
+        <!--Quiz 1 input-->
+        <div class="test1">
+          <p style="font-size: small; margin: 2px;">Quiz 1 Score</p>
+          <input type="text" style="border: none; outline: none; padding: 10px; width: calc(100% - 20px);" id="quizOneInput">
+        </div>
+
+        <!--Quiz 2 input-->
+        <div>
+          <p style="font-size: small; margin: 2px;">Quiz 2 Score</p>
+          <input type="text" style="border: none; outline: none; padding: 10px; width: calc(100% - 20px);" id="quizTwoInput">
+        </div>
+
+
+        <!--Quiz 3 input-->
+        <div>
+          <p style="font-size: small; margin: 2px;">Quiz 3 Score</p>
+          <input type="text" style="border: none; outline: none; padding: 10px; width: calc(100% - 20px);" id="quizThreeInput">
+        </div>
+      </div>
+      <button style="width: 100%; height: 40px; outline: none; border: none; border-radius: 10px; margin-bottom: 5px; background-color: rgba(41, 41, 41, 0.876); color: rgb(255, 255, 255);">Next</button>
+    </form>
+
+    <!--Lab assesments-->
+    <form action="/assesments" class="assessment" style="background-color: rgb(248, 248, 248); max-width: 500px; padding: 20px; margin: 10px; border-radius: 20px; display: none;">
+      <h1 style=" font-size: large; text-align: center; margin-bottom: 40px">Your Lab Assessment Score</h1>
+
+      <!--Assessments inputs-->
+      <div style="width: 300px; margin-bottom: 40px;">
+        <!--Quiz 1 input-->
+        <p style="font-size: small; margin: 2px;">Assessment Score</p>
+        <input type="text" style="border: none; outline: none; padding: 10px; width: calc(100% - 20px);" id="assessmentInput">
+      </div>
+      <button style="width: 100%; height: 40px; outline: none; border: none; border-radius: 10px; margin-bottom: 5px; background-color: rgba(41, 41, 41, 0.876); color: rgb(255, 255, 255);">Evaluate Score</button>
+    </form>
+  </div>
+  <script>
+    const testScore = document.querySelector(".testScore");
+    const testCard = document.querySelector(".testCard");
+    const quizCard = document.querySelector(".quezzes");
+    const assessmentCard = document.querySelector(".assessment");
+
+    var result = 00;
+    window.onload = function() {
+      testCard.style.display = "block";
+    }
+    testCard.addEventListener("submit", function(e) {
+      e.preventDefault()
+      const testOneInput = document.querySelector("#testOneInput");
+      const testTwoInput = document.querySelector("#testTwoInput");
+
+      var testOneValue = testOneInput.value;
+      var testTwoValue = testTwoInput.value;
+
+      const weights = (value) => {
+        var weight = 25;
+        var weightOfValue = (weight / 100) * value;
+        return weightOfValue;
+      };
+
+      const sum = () => {
+        return weights(testOneValue) + weights(testTwoValue);
+      };
+      result = sum()
+      testScore.innerHTML = result;
+      switch (true) {
+        case result >= 75:
+          testScore.style.backgroundColor = "rgb(160, 250, 214)";
+          break;
+        case result >= 70 && result <= 74:
+          testScore.style.backgroundColor = "rgb(0, 204, 102)";
+          break;
+        case result >= 60 && result <= 69:
+          testScore.style.backgroundColor = "rgb(255, 221, 102)";
+          break;
+        case result >= 50 && result <= 59:
+          testScore.style.backgroundColor = "rgb(255, 204, 102)";
+          break;
+        default:
+          testScore.style.backgroundColor = "rgb(250, 160, 160)";
+      }
+      testCard.style.display = "none";
+      quizCard.style.display = "block";
+    })
+
+    quizCard.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const quizOneInput = document.querySelector("#quizOneInput");
+      const quizTwoInput = document.querySelector("#quizTwoInput");
+      const quizThreeInput = document.querySelector("#quizThreeInput");
+
+      const weights = () => {
+        var quizOneValue = parseInt(quizOneInput.value);
+        var quizTwoValue = parseInt(quizTwoInput.value);
+        var quizThreeValue = parseInt(quizThreeInput.value);
+
+
+        const quizSum = quizOneValue + quizTwoValue + quizThreeValue;
+        const quizDivision = quizSum / 300;
+        const quizPercent = quizDivision * 100;
+        const quizSW = quizPercent * 30;
+        const weight = quizSW / 100;
+        return weight;
+      };
+
+      console.log(result);
+      result = result + weights();
+
+      testScore.innerHTML = result;
+      switch (true) {
+        case result >= 75:
+          testScore.style.backgroundColor = "rgb(160, 250, 214)";
+          break;
+        case result >= 70 && result <= 74:
+          testScore.style.backgroundColor = "rgb(0, 204, 102)";
+          break;
+        case result >= 60 && result <= 69:
+          testScore.style.backgroundColor = "rgb(255, 221, 102)";
+          break;
+        case result >= 50 && result <= 59:
+          testScore.style.backgroundColor = "rgb(255, 204, 102)";
+          break;
+        default:
+          testScore.style.backgroundColor = "rgb(250, 160, 160)";
+      }
+      quizCard.style.display = "none";
+      assessmentCard.style.display = "block";
+    })
+
+    assessmentCard.addEventListener("submit", function(e) {
+      e.preventDefault()
+      const you = document.querySelector(".you");
+      const assessmentInput = document.querySelector("#assessmentInput");
+
+
+      const weights = () => {
+        var assessmentValue = parseInt(assessmentInput.value);
+
+        var weight = 20;
+        var weightOfValue = (weight / 100) * assessmentValue;
+        return weightOfValue;
+
+      };
+      result = result + weights();
+      you.innerHTML = "YOUR SEMENTER SCORE "
+      testScore.innerHTML = result;
+      switch (true) {
+        case result >= 75:
+          testScore.style.backgroundColor = "rgb(160, 250, 214)";
+          break;
+        case result >= 70 && result <= 74:
+          testScore.style.backgroundColor = "rgb(0, 204, 102)";
+          break;
+        case result >= 60 && result <= 69:
+          testScore.style.backgroundColor = "rgb(255, 221, 102)";
+          break;
+        case result >= 50 && result <= 59:
+          testScore.style.backgroundColor = "rgb(255, 204, 102)";
+          break;
+        default:
+          testScore.style.backgroundColor = "rgb(250, 160, 160)";
+      }
+      if (assessmentCard.querySelector("button").innerHTML == "Calculate new Score") {
+        location.reload();
+      }
+      assessmentCard.querySelector("button").innerHTML = "Calculate new Score"
+    })
+  </script>
+</body>
+
+</html>
