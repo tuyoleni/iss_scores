@@ -207,8 +207,10 @@
           assessmentCard.querySelector("button").innerHTML = "Calculate new Score"
       }
       if (assessmentCard.querySelector("button").innerHTML == "Calculate new Score") {
-        assessmentCard.style.display = "block";
-        location.reload();
+        assessmentCard.addEventListener("submit", function() {
+          assessmentCard.style.display = "block";
+          location.reload();
+        })
       }
     })
   </script>
