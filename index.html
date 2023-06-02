@@ -186,9 +186,9 @@
         return weightOfValue;
 
       };
-      result = result + weights();
+      result = result + weights().toFixed(1);
       you.innerHTML = "YOUR SEMENTER SCORE "
-      testScore.innerHTML = result.toFixed(1);
+      testScore.innerHTML = result;
       switch (true) {
         case result > 75:
           testScore.style.backgroundColor = "rgb(160, 250, 214)";
