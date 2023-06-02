@@ -173,22 +173,22 @@
     })
 
     assessmentCard.addEventListener("submit", function(e) {
-      e.preventDefault()
+      e.preventDefault();
       const you = document.querySelector(".you");
       const assessmentInput = document.querySelector("#assessmentInput");
-
+      const submitButton = assessmentCard.querySelector("button");
 
       const weights = () => {
         var assessmentValue = parseInt(assessmentInput.value);
-
         var weight = 20;
         var weightOfValue = (weight / 100) * assessmentValue;
         return weightOfValue;
-
       };
+
       result = result + weights();
-      you.innerHTML = "YOUR SEMENTER SCORE "
+      you.innerHTML = "YOUR SEMENTER SCORE";
       testScore.innerHTML = result;
+
       switch (true) {
         case result > 75:
           testScore.style.backgroundColor = "rgb(160, 250, 214)";
@@ -205,12 +205,9 @@
         default:
           testScore.style.backgroundColor = "rgb(250, 160, 160)";
       }
-      if (assessmentCard.querySelector("button").innerHTML == "Calculate new Score") {
-        assessmentCard.style.display = "none";
-        location.reload();
-      }
-      assessmentCard.querySelector("button").innerHTML = "Calculate new Score"
-    })
+
+      submitButton.disabled = true;
+    });
   </script>
 </body>
 
