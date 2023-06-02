@@ -86,7 +86,6 @@
     const assessmentCard = document.querySelector(".assessment");
 
     var result = 00;
-    result.toFixed(1)
     window.onload = function() {
       testCard.style.display = "block";
     }
@@ -107,7 +106,7 @@
       const sum = () => {
         return weights(testOneValue) + weights(testTwoValue);
       };
-      result = sum().toFixed(1);
+      result = sum()
       testScore.innerHTML = result;
       switch (true) {
         case result >= 75:
@@ -149,7 +148,9 @@
         return weight;
       };
 
-      result = result + weights().toFixed(1);
+      console.log(result);
+      result = result + weights();
+      result.toFixed(1)
 
       testScore.innerHTML = result;
       switch (true) {
@@ -186,7 +187,7 @@
         return weightOfValue;
 
       };
-      result = result + weights().toFixed(1);
+      result = result + weights();
       you.innerHTML = "YOUR SEMENTER SCORE "
       testScore.innerHTML = result;
       switch (true) {
